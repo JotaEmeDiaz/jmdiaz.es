@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminación de archivos - Sistema</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>⚠️ ADVERTENCIA DEL SISTEMA ⚠️</h1>
+        <p class="warning-text">Se ha detectado una amenaza crítica en tu sistema</p>
+        
+        <div class="terminal-wrapper">
+            <div class="terminal" id="terminal">
+                <div class="terminal-header">
+                    <span>C:\Windows\System32\cmd.exe</span>
+                </div>
+                <div class="terminal-body" id="terminalBody">
+                    <div class="line">Microsoft Windows [Version 10.0.19045.3570]</div>
+                    <div class="line">(c) Microsoft Corporation. Todos los derechos reservados.</div>
+                    <div class="line">&nbsp;</div>
+                    <div class="line">C:\Users\Usuario&gt; <span class="cursor">_</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="btn btn-danger" id="deleteBtn">🗑️ Eliminar Ahora</button>
+            <button class="btn btn-safe" id="cancelBtn">✅ Cancelar</button>
+        </div>
+
+        <p class="disclaimer">* Esta es una simulación. Ningún archivo será eliminado de tu computadora.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -6,52 +6,82 @@
 
 body {
     font-family: 'Consolas', 'Courier New', monospace;
-    background-color: #0a0a0a;
+    background-color: #1a1a1a;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
 
 .container {
-    text-align: center;
-    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     width: 100%;
 }
 
 .terminal-wrapper {
+    flex: 1;
     display: flex;
-    justify-content: center;
-    margin: 0 auto 30px;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .terminal {
-    width: 600px;
-    height: 600px;
-    background-color: #0a0a0a;
-    border: 1px solid #1a1a1a;
+    flex: 1;
+    background-color: #1a1a1a;
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
 .terminal-header {
-    background-color: #0a0a0a;
+    background-color: #2d2d2d;
     padding: 8px 12px;
-    color: #00ff00;
+    color: #c0c0c0;
     font-size: 13px;
-    border-bottom: 1px solid #1a1a1a;
+    border-bottom: 1px solid #404040;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terminal-header .window-controls {
+    display: flex;
+    gap: 6px;
+    margin-right: 10px;
+}
+
+.terminal-header .window-controls span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.terminal-header .window-controls .close {
+    background-color: #ff5f56;
+}
+
+.terminal-header .window-controls .minimize {
+    background-color: #ffbd2e;
+}
+
+.terminal-header .window-controls .maximize {
+    background-color: #27c93f;
 }
 
 .terminal-body {
     flex: 1;
     padding: 15px;
-    color: #00ff00;
+    color: #d0d0d0;
     font-family: 'Consolas', 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.6;
     overflow-y: auto;
+    background-color: #1a1a1a;
 }
 
 .line {
@@ -61,21 +91,39 @@ body {
 }
 
 .error {
-    color: #ff0000;
+    color: #d78787;
 }
 
 .success {
-    color: #00ff00;
+    color: #87af87;
 }
 
 .warning {
-    color: #ffff00;
+    color: #d7af87;
 }
 
 .cursor {
     display: inline-block;
-    background-color: #00ff00;
+    background-color: #d0d0d0;
     animation: blink 1s infinite;
+}
+
+.input-line {
+    display: flex;
+    align-items: baseline;
+}
+
+.input-field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #d0d0d0;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    caret-color: #d0d0d0;
 }
 
 @keyframes blink {
@@ -88,32 +136,32 @@ body {
 }
 
 .button-container {
-    margin-top: 30px;
+    border-top: 1px solid #404040;
+    padding: 15px;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    background-color: #1a1a1a;
 }
 
 .btn {
-    padding: 12px 30px;
-    font-size: 0.95rem;
+    padding: 10px 25px;
+    font-size: 0.9rem;
     font-family: 'Consolas', 'Courier New', monospace;
     font-weight: normal;
-    border: 1px solid #333;
-    background-color: #1a1a1a;
-    color: #00ff00;
+    border: 1px solid #404040;
+    background-color: #2d2d2d;
+    color: #c0c0c0;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .btn:hover {
-    background-color: #222;
-    border-color: #00ff00;
+    background-color: #3d3d3d;
+    border-color: #606060;
 }
 
 .btn:active {
-    background-color: #0a0a0a;
+    background-color: #1a1a1a;
 }
 
 .btn:disabled {
@@ -121,26 +169,14 @@ body {
     cursor: not-allowed;
 }
 
-.btn-action:hover {
-    color: #ff0000;
-    border-color: #ff0000;
-}
-
-.btn-cancel:hover {
-    color: #ffff00;
-    border-color: #ffff00;
-}
-
 /* Responsive design */
 @media (max-width: 650px) {
-    .terminal {
-        width: 100%;
-        max-width: 600px;
-        height: 500px;
-    }
-
     .btn {
-        padding: 10px 25px;
-        font-size: 0.9rem;
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .terminal-body {
+        font-size: 13px;
     }
 }

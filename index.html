@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal</title>
-    <link rel="stylesheet" href="style.css">
+    <title>JMDiaz - Terminal</title>
+    <link rel="icon" type="image/png" href="images/terminal.png">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
@@ -19,18 +20,37 @@
                     <span>root@system:~#</span>
                 </div>
                 <div class="terminal-body" id="terminalBody">
-                    <div class="line">Linux kernel 5.15.0-generic x86_64</div>
+                    <div class="line">JMDiaz System Boot Loader v2.0</div>
                     <div class="line">&nbsp;</div>
-                    <div class="line" id="countdownLine">root@system:~# <span class="cursor">_</span></div>
+                    <div class="line">root@jmdiaz:~# ./boot.sh</div>
+                    <div class="line success">Iniciando sistema operativo...</div>
+                    <!--<div class="line">root@system:~# <span class="cursor">_</span></div>-->
                 </div>
             </div>
         </div>
 
-        <div class="button-container">
-            <button class="btn btn-cancel" id="cancelBtn">[ Cancelar ]</button>
+                <div class="button-container">
+            <div class="button-row">
+                <div class="left-buttons">
+                    <button class="btn btn-reiniciar" id="reiniciarBtn">Reiniciar Sistema</button>
+                </div>
+                <div id="categoryButtons" class="category-buttons">
+                    <!-- Botones de categorías aparecerán aquí -->
+                </div>
+                <div class="right-buttons">
+                    <button class="btn btn-sobre-mi" id="sobreMiBtn">Sobre mi</button>
+                </div>
+            </div>
         </div>
+
+        <footer style="text-align: center; padding: 10px; font-size: 12px; color: #888;">
+            <a href="legal/privacidad.html" style="margin: 0 10px;" target="_blank">Política de Privacidad</a> |
+            <a href="legal/aviso-legal.html" style="margin: 0 10px;" target="_blank">Aviso Legal</a> |
+            <a href="legal/cookies.html" style="margin: 0 10px;" target="_blank">Política de Cookies</a>
+        </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

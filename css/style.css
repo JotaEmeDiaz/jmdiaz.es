@@ -91,15 +91,43 @@ body {
 }
 
 .error {
-    color: #d78787;
+    color: #D46666; /* rgb(212, 102, 102) */
 }
 
 .success {
-    color: #87af87;
+    color: #28a745; /* rgb(40, 167, 69) */
+}
+
+.success-light {
+    color: #87D7AF; /* Verde más claro para [OK] */
+}
+
+.sub-line {
+    color: yellow; /* Amarillo para subelementos cargando */
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.sub-line-done {
+    color: darkgrey; /* Gris oscuro para subelementos finalizados */
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.sub-ok {
+    color: #4a5d4a; /* Gris oscuro con tonalidad verde para [OK] en subelementos */
 }
 
 .warning {
-    color: #d7af87;
+    color: #E3CE49; /* rgb(227, 206, 73) */
+}
+
+.dots {
+    color: #888; /* Gris para puntos suspensivos */
+}
+
+.dots.warning {
+    color: #E3CE49; /* Amarillo para puntos justo antes del OK */
 }
 
 .cursor {
@@ -139,8 +167,31 @@ body {
     border-top: 1px solid #404040;
     padding: 15px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     background-color: #1a1a1a;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-buttons, .right-buttons {
+    display: flex;
+}
+
+.left-buttons .btn, .right-buttons .btn {
+    background-color: #9c9c9c;
+    color: #000000;
 }
 
 .btn {

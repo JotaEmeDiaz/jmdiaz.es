@@ -420,6 +420,9 @@ window.addEventListener('pageshow', (event) => {
 });
 
 document.addEventListener('click', () => {
+    // No enfocar el input si el modal está abierto
+    if (document.querySelector('.custom-modal-overlay')) return;
+    
     if (window.currentInputField && !window.currentInputField.disabled) {
         window.currentInputField.focus();
     }

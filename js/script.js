@@ -10,6 +10,7 @@ const actionButtons = document.getElementById('actionButtons');
 let isBooting = false;
 let bootInterval = null;
 let currentInputField = null;
+let booted = false;
 
 // Categorías y servicios
 const generalBootMessages = [
@@ -25,7 +26,8 @@ const categoriesData = [
         bootMessage: 'Comprobando seguridad...',
         subElements: [],
         services: [],
-        menu: 0
+        menu: 0,
+        description: ''
     },
     {
         command: 'claves',
@@ -33,7 +35,8 @@ const categoriesData = [
         bootMessage: 'Generando claves privadas-públicas...',
         subElements: [],
         services: [],
-        menu: 0
+        menu: 0,
+        description: ''
     },
     {
         command: 'encriptacion',
@@ -41,7 +44,8 @@ const categoriesData = [
         bootMessage: 'Encriptando datos sensibles...',
         subElements: ['SSL', 'SSH', 'SHA256', 'Criptografia'],
         services: [],
-        menu: 0
+        menu: 0,
+        description: ''
     },
     {
         command: 'automatizaciones',
@@ -49,7 +53,8 @@ const categoriesData = [
         bootMessage: 'Arrancando sistemas de automatización...',
         subElements: ['N8N', 'Make', 'Flowise', 'PostgreSQL', 'Airtable'],
         services: ['N8N'],
-        menu: 1
+        menu: 1,
+        description: 'Automatiza tu vida cotidiana con flujos de trabajo inteligentes. Desde correos automáticos hasta integraciones complejas, aquí encontrarás herramientas para que el trabajo se haga solo. ¿Cansado de tareas repetitivas? Deja que N8N, Make y Flowise conviertan tu rutina en un sueño.'
     },
     {
         command: 'redes sociales',
@@ -57,7 +62,8 @@ const categoriesData = [
         bootMessage: 'Conectando redes sociales...',
         subElements: ['Telegram', 'Whatsapp'],
         services: [],
-        menu: 0
+        menu: 0,
+        description: ''
     },
     {
         command: 'ia',
@@ -65,7 +71,16 @@ const categoriesData = [
         bootMessage: 'Activando IA...',
         subElements: ['ComfyUI', 'ChatGPT', 'Llama3', 'LM Studio', 'Ollama'],
         services: ['ComfyUI', 'ChatGPT', 'Llama3', 'LM Studio', 'Ollama'],
-        menu: 1
+        menu: 1,
+        description: 'Lo notas? Lo sientes? El mundo está cambiando, la IA se está apoderando de ti, no es una película, es la realidad. Desde esta sección podrás descubrir cosas que ni imaginas: su uso más espectacular, herramientas ocultas, modelos avanzados como Llama3 o sistemas como ComfyUI ejecutados en local y en servidores especializados! Prepárate para el futuro.'
+    },
+    {
+        command: 'vr',
+        name: 'Realidad Virtual',
+        bootMessage: 'Activando IA...',
+        subElements: ['ComfyUI', 'ChatGPT', 'Llama3', 'LM Studio', 'Ollama'],
+        services: ['ComfyUI', 'ChatGPT', 'Llama3', 'LM Studio', 'Ollama'],
+        menu: 0
     },
     {
         command: 'domotica',
@@ -73,7 +88,8 @@ const categoriesData = [
         bootMessage: 'Chequeando servicios, sensores y cámaras:...',
         subElements: ['Home Assistant', 'ESPHome', 'ESP32', 'Sensores', 'Camaras', 'Amazon Alexa', 'Google Home'],
         services: ['ESPHome'],
-        menu: 1
+        menu: 1,
+        description: 'Convierte tu hogar en un castillo inteligente. Controla luces, cámaras, sensores y dispositivos con ESPHome y Home Assistant. Desde alarmas automáticas hasta integración con Alexa, aquí domotizas tu vida para que sea más segura y cómoda.'
     },
     {
         command: 'impresion3d',
@@ -81,7 +97,8 @@ const categoriesData = [
         bootMessage: 'Activando impresoras 3D...',
         subElements: ['Ender 3 v3 SE', 'Klipper', 'Marlin', 'OrcaSlicer', 'Ultimaker Cura', 'ADXL345 Vibration Sensor', 'Input Shaper'],
         services: [],
-        menu: 1
+        menu: 1,
+        description: 'Crea objetos del futuro con impresoras 3D. Desde Ender 3 hasta Klipper, explora slicers como OrcaSlicer y sensores avanzados. ¿Quieres imprimir piezas precisas? Esta sección te guía por el mundo de la fabricación aditiva.'
     },
     {
         command: 'hacking',
@@ -89,7 +106,8 @@ const categoriesData = [
         bootMessage: 'Iniciando hacking tools...',
         subElements: ['Kali Linux', 'Parrot', 'LilyGo', 'NRF24L01', 'Marauder', 'BruceFirmware', 'BLE Jammer', 'sniffer'],
         services: [],
-        menu: 1
+        menu: 1,
+        description: 'Explora el lado oscuro de la tecnología. Herramientas como Kali Linux, Parrot y dispositivos NRF24L01 te permiten experimentar con seguridad, jamming y análisis. Recuerda: con gran poder viene gran responsabilidad.'
     },
     {
         command: 'blockchain',
@@ -97,7 +115,8 @@ const categoriesData = [
         bootMessage: 'Conectando y analizando blockchain...',
         subElements: ['Web3', 'Bitcoin', 'Ethereum', 'Binance', 'XRP', 'Polkadot'],
         services: [],
-        menu: 1
+        menu: 1,
+        description: 'Sumérgete en el mundo de las criptomonedas y contratos inteligentes. Web3, Bitcoin, Ethereum... Analiza transacciones, explora DeFi y descubre el potencial revolucionario de la blockchain.'
     },
     {
         command: 'servidores',
@@ -105,14 +124,15 @@ const categoriesData = [
         bootMessage: 'Arrancando servidores...',
         subElements: ['Cloudflare', 'VPN', 'Proxmox', 'Adguard', 'Tailscale', 'WireGuard', 'Docker'],
         services: [],
-        menu: 1
+        menu: 1,
+        description: 'Gestiona tu infraestructura digital con servidores potentes. Cloudflare para seguridad, Proxmox para virtualización, Docker para contenedores. Construye redes VPN seguras y mantén todo bajo control con Tailscale.'
     }
 ];
 
 // Generar arrays combinados
 const bootMessages = generalBootMessages.concat(categoriesData.map(c => c.bootMessage));
 const subElements = generalBootMessages.map(() => []).concat(categoriesData.map(c => c.subElements));
-const categories = categoriesData.filter(c => c.menu === 1).map(c => c.name);
+const categories = categoriesData.filter(c => c.menu === 1);
 const services = categoriesData.flatMap(c => c.services);
 
 // Mapa de comandos a nombres
@@ -178,11 +198,36 @@ function createInputLine() {
             if (command) {
                 // Comandos válidos
                 const validCommands = categoriesData.map(c => c.command);
-                if (validCommands.includes(command)) {
-                    addLine(`root@jmdiaz:~# ${command}`);
-                    const displayName = commandToName[command];
-                    showCustomAlert(`[ ${displayName} ] Estamos construyendo esto! Ten paciencia...`, '');
-                    createInputLine();
+                if (validCommands.includes(command) || command === 'sobre-mi' || command === 'reboot') {
+                    if (command === 'sobre-mi') {
+                        addLine(`root@jmdiaz:~# ${command}`);
+                        addLine('');
+                        addLine('Hola, soy JMD, desarrollador y entusiasta de la tecnología.');
+                        addLine('Apasionado por la IA, domótica, impresión 3D, blockchain y automatizaciones.');
+                        addLine('Explorando el futuro de la tecnología con creatividad y responsabilidad.');
+                        addLine('');
+                        showCustomAlert(`[ Sobre mi ] Estamos construyendo esto! Ten paciencia...`, '');
+                        createInputLine();
+                    } else if (command === 'reboot') {
+                        addLine(`root@jmdiaz:~# ${command}`);
+                        addLine('Reiniciando sistema...');
+                        setTimeout(() => {
+                            localStorage.removeItem('firstBootDate');
+                            location.reload();
+                        }, 1000);
+                    } else {
+                        addLine(`root@jmdiaz:~# ${command}`);
+                        const category = categoriesData.find(c => c.command === command);
+                        const displayName = category.name;
+                        const description = category.description;
+                        if (description) {
+                            addLine('');
+                            addLine(description);
+                            addLine('');
+                        }
+                        showCustomAlert(`[ ${displayName} ] Estamos construyendo esto! Ten paciencia...`, '');
+                        createInputLine();
+                    }
                 } else {
                     addLine(`root@jmdiaz:~# ${command}`);
                     addLine(`bash: ${command}: command not found`, 'error');
@@ -197,12 +242,17 @@ function createInputLine() {
 }
 
 // Función para crear botón de categoría
-function createCategoryButton(category) {
+function createCategoryButton(categoryData) {
     const btn = document.createElement('button');
     btn.className = 'btn';
-    btn.textContent = `[ ${category} ]`;
+    btn.textContent = `[ ${categoryData.name} ]`;
     btn.addEventListener('click', () => {
-        showCustomAlert(`[ ${category} ] Estamos construyendo esto! Ten paciencia...`, '');
+        // Simular escribir el comando en la shell
+        if (window.currentInputField && !window.currentInputField.disabled) {
+            window.currentInputField.value = categoryData.command;
+            const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+            window.currentInputField.dispatchEvent(enterEvent);
+        }
     });
     return btn;
 }
@@ -212,11 +262,11 @@ async function startBoot() {
     isBooting = true;
 
     addLine('');
-    await sleep(500);
+    await sleep(300);
 
     for (let i = 0; i < bootMessages.length; i++) {
         // Tiempo aleatorio entre 200-1000ms
-        const randomDelay = Math.random() * 800 + 200;
+        const randomDelay = Math.random() * 300 + 50;
         const subList = subElements[i];
         const subCount = subList.length;
         
@@ -286,14 +336,14 @@ async function startBoot() {
         if (i >= generalBootMessages.length && i < bootMessages.length) {
             const categoryIndex = i - generalBootMessages.length;
             if (categoriesData[categoryIndex].menu === 1) {
-                const btn = createCategoryButton(categoriesData[categoryIndex].name);
+                const btn = createCategoryButton(categoriesData[categoryIndex]);
                 categoryButtons.appendChild(btn);
                 categoryButtons.style.display = 'flex';
             }
         }
     }
 
-    await sleep(500);
+    await sleep(300);
     addLine('');
     addLine('####################################', 'success-light');
     addLine('# ¡Bienvenido al sistema [JMDiaz]! #', 'success-light');
@@ -305,6 +355,7 @@ async function startBoot() {
     localStorage.setItem('firstBootDate', now.toISOString());
 
     isBooting = false;
+    booted = true;
     
     // Crear línea de entrada después del boot
     setTimeout(() => {
@@ -314,6 +365,7 @@ async function startBoot() {
 
 // Función para mostrar mensaje de boot anterior
 function showPreviousBoot() {
+    booted = true;
     const firstBootDate = new Date(localStorage.getItem('firstBootDate'));
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     const formattedDate = firstBootDate.toLocaleDateString('es-ES', options);
@@ -326,8 +378,8 @@ function showPreviousBoot() {
     addLine('');
 
     // Mostrar botones inmediatamente
-    categories.forEach(cat => {
-        const btn = createCategoryButton(cat);
+    categories.forEach(catData => {
+        const btn = createCategoryButton(catData);
         categoryButtons.appendChild(btn);
     });
     categoryButtons.style.display = 'flex';
@@ -355,7 +407,14 @@ function checkBootStatus() {
 
 // Función cancelar (Sobre mi)
 function cancelBoot() {
-    showCustomAlert('[ Sobre mi ] Estamos construyendo esto! Ten paciencia...', '');
+    if (!booted) return;
+    
+    // Simular escribir el comando en la shell
+    if (window.currentInputField && !window.currentInputField.disabled) {
+        window.currentInputField.value = 'sobre-mi';
+        const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+        window.currentInputField.dispatchEvent(enterEvent);
+    }
 }
 
 // Función continuar (Privacidad)
@@ -365,11 +424,14 @@ function continuePage() {
 
 // Función reiniciar sistema
 function restartSystem() {
-    showCustomAlert('[ Reiniciar Sistema ] Estamos reiniciando el sistema...', '');
-    setTimeout(() => {
-        localStorage.removeItem('firstBootDate');
-        location.reload();
-    }, 1000);
+    if (!booted) return;
+    
+    // Simular escribir el comando en la shell
+    if (window.currentInputField && !window.currentInputField.disabled) {
+        window.currentInputField.value = 'reboot';
+        const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+        window.currentInputField.dispatchEvent(enterEvent);
+    }
 }
 
 // Event listeners

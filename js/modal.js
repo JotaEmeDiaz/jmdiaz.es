@@ -53,7 +53,7 @@
     document.head.appendChild(style);
   }
 
-  function showCustomAlert(message, title = '') {
+  function showCustomAlert(message, title = '', onClose = null) {
     _injectModalStyles();
 
     // Deshabilitar input de shell si existe
@@ -88,6 +88,7 @@
     ok.textContent = 'OK';
     ok.addEventListener('click', () => {
       document.body.removeChild(overlay);
+      if (onClose) onClose();
       // Habilitar y enfocar input de shell
       if (window.currentInputField) {
         window.currentInputField.disabled = false;

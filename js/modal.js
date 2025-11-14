@@ -76,7 +76,7 @@
     }
 
     const msg = document.createElement('div');
-    msg.className = 'message';
+    msg.className = 'error';
     msg.textContent = message;
     modal.appendChild(msg);
 

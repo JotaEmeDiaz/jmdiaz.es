@@ -122,6 +122,10 @@ body {
     color: #E3CE49; /* rgb(227, 206, 73) */
 }
 
+.message {
+    color: #627282; /* rgb(227, 206, 73) */
+}
+
 .dots {
     color: #888; /* Gris para puntos suspensivos */
 }

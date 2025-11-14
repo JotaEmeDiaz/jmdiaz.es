@@ -202,9 +202,9 @@ function createInputLine() {
                     if (command === 'sobre-mi') {
                         addLine(`root@jmdiaz:~# ${command}`);
                         addLine('');
-                        addLine('Hola, soy JMD, desarrollador y entusiasta de la tecnología.');
-                        addLine('Apasionado por la IA, domótica, impresión 3D, blockchain y automatizaciones.');
-                        addLine('Explorando el futuro de la tecnología con creatividad y responsabilidad.');
+                        addLine('Hola, soy JMD, desarrollador y entusiasta de la tecnología.', 'success-light');
+                        addLine('Apasionado por la IA, domótica, impresión 3D, blockchain y automatizaciones.', 'success-light');
+                        addLine('Explorando el futuro de la tecnología con creatividad y responsabilidad.', 'success-light');
                         addLine('');
                         showCustomAlert(`[ Sobre mi ] Estamos construyendo esto! Ten paciencia...`, '');
                         createInputLine();
@@ -222,7 +222,7 @@ function createInputLine() {
                         const description = category.description;
                         if (description) {
                             addLine('');
-                            addLine(description);
+                            addLine(description, 'success-light');
                             addLine('');
                         }
                         showCustomAlert(`[ ${displayName} ] Estamos construyendo esto! Ten paciencia...`, '');

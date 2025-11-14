@@ -165,7 +165,8 @@ body {
 
 .button-container {
     border-top: 1px solid #404040;
-    padding: 15px;
+    padding-bottom: 10px;
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -230,4 +231,34 @@ body {
     .terminal-body {
         font-size: 13px;
     }
+}
+
+.footer-links {
+    background-color: black;
+    color: white;
+    text-align: right;
+    padding: 0px;
+}
+
+.footer-links a + span {
+    color: rgb(255, 255, 255, 0.3);
+}
+
+.footer-link {
+    color: #ccc;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #fff;
+}
+
+.footer-link:visited {
+    color: #ccc;
+}
+
+.copyright {
+    color: #ccc;
+    font-size: 12px;
 }

@@ -72,7 +72,7 @@ const categoriesData = [
         subElements: ['ComfyUI', 'ChatGPT', 'Llama3', 'LM Studio', 'Ollama'],
         services: ['ComfyUI', 'ChatGPT', 'Llama3', 'LM Studio', 'Ollama'],
         menu: 1,
-        description: 'Lo notas? Lo sientes? El mundo está cambiando, la IA se está apoderando de ti, no es una película, es la realidad. Desde esta sección podrás descubrir cosas que ni imaginas: su uso más espectacular, herramientas ocultas, modelos avanzados como Llama3 o sistemas como ComfyUI ejecutados en local y en servidores especializados! Prepárate para el futuro.'
+        description: '¿Lo notas? ¿Lo sientes? El mundo está cambiando, la IA se está apoderando de ti, no es una película, es la realidad. Desde esta sección podrás descubrir cosas que ni imaginas: su uso más espectacular, herramientas ocultas, los modelos más avanzados, sistemas como ComfyUI ejecutados en local y en servidores especializados! Prepárate para el futuro, o mejor para el presente.'
     },
     {
         command: 'vr',
